@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import AccountPanel from "@/components/AccountPanel";
 import { useUserStore } from "@/stores/userStore";
-import { CircleUserRound } from "lucide-react";
 import { useTranslations } from "next-intl";
-import PopoverBtn from "./PopoverButton";
 
 interface AccountButtonProps {
   avatarClassName: string;
@@ -27,8 +24,5 @@ export default function AccountButton({ notOnSideNav, avatarClassName, buttonCla
   }, []);
 
   // 由于我们已经移除了登录功能，我们总是显示账户面板
-  return (
-    <>
-    </>
-  );
+  return <></>;
 }

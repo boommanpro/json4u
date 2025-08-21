@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import { getStatistics } from "@/app/actions";
 import Typography from "@/components/ui/typography";
 import { type MessageKey } from "@/global";
 import { type StatisticsKeys } from "@/lib/env";
 import { dateToYYYYMMDD } from "@/lib/utils";
-import { freeQuota, initialStatistics, useUserStore } from "@/stores/userStore";
+import { freeQuota, useUserStore } from "@/stores/userStore";
 import { useTranslations } from "next-intl";
 import { useShallow } from "zustand/shallow";
 import BasePopover from "./BasePopover";
@@ -29,17 +28,18 @@ export default function StatisticsPopover() {
 
   useEffect(() => {
     (async () => {
-      try {
-        const fallbackKey = (await getPublicIP()) ?? "";
-        const { statistics, expiredAt, error } = await getStatistics(fallbackKey);
-        if (error) {
-          console.error("getStatistics failed:", error);
-        } else {
-          setStatistics({ ...initialStatistics, ...statistics }, expiredAt!, fallbackKey);
-        }
-      } catch (error) {
-        console.error("getStatistics failed:", error);
-      }
+      // 由于移除了登录功能和静态导出限制，我们使用默认统计数据
+      const fallbackKey = "default";
+      const { statistics, expiredAt } = {
+        statistics: {
+          graphModeView: 0,
+          tableModeView: 0,
+          textComparison: 0,
+          jqExecutions: 0,
+        },
+        expiredAt: new Date()
+      };
+      setStatistics(statistics, expiredAt, fallbackKey);
     })();
   }, []);
 
@@ -70,11 +70,3 @@ export default function StatisticsPopover() {
   );
 }
 
-async function getPublicIP() {
-  try {
-    const resp = await fetch("https://api64.ipify.org");
-    return await resp.text();
-  } catch (error) {
-    console.error("failed to get public IP:", error);
-  }
-}
