@@ -34,8 +34,9 @@ export function CtaButton({ tier: { plan, highlighted, cta } }: CtaButtonProps) 
   const [loading, setLoading] = useState(false);
   const user = useUserStore((state) => state.user);
 
-  const email = user?.email ?? "";
-  const needLogin = !email;
+  // 由于我们已经移除了登录功能，user始终为null，所以我们提供默认值
+  const email = "";
+  const needLogin = false; // 不再需要登录
   const needPay = plan === "monthly" || plan === "yearly";
 
   const onClick = async () => {
