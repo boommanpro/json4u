@@ -16,6 +16,18 @@ jiti("./src/lib/env");
 const isDev = process.env.NODE_ENV === "development";
 const isCN = /\.cn(:3000)?$/.test(process.env.NEXT_PUBLIC_APP_URL);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+/** @type {import('next').NextConfig} */
+const isGithubActions = process.env.GITHUB_ACTIONS || false;
+let assetPrefix = "";
+let basePath = "";
+
+if (isGithubActions) {
+  // 去掉 `<owner>/`
+  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, "");
+
+  assetPrefix = `/${repo}/`;
+  basePath = `/${repo}`;
+}
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -23,7 +35,10 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   poweredByHeader: false,
+  basePath,
+  assetPrefix,
   output: "export",
+  distDir: "dist",
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   experimental: {
     optimizePackageImports: [

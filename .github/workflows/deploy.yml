@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # 新增 pnpm 安装步骤
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.12.0  # 指定 pnpm 版本，建议与本地一致
+
+      - name: Install dependencies And Build
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Application
+        run: pnpm run build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.3.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: dist
+          force: true
+          commit-message: website deploy
+
+      - name: Cleanup
+        run: rm -rf dist
