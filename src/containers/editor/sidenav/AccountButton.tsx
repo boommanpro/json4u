@@ -70,12 +70,8 @@ export default function AccountButton({ notOnSideNav, avatarClassName, buttonCla
     );
   } else {
     return (
-      <LinkButton
-        icon={<CircleUserRound className="icon" />}
-        title={t("login")}
-        className={buttonClassName}
-        href={loginHref}
-      />
+      <>
+      </>
     );
   }
 }

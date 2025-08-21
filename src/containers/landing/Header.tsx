@@ -42,7 +42,6 @@ export default function Header() {
         </div>
         <div className="ml-auto" />
         <div className="flex items-center h-full py-3 gap-4">
-          {!isCN && <AccountButton notOnSideNav avatarClassName="w-8 h-8" />}
           <LinkButton href="/editor" variant="default">
             {t("Editor")}
           </LinkButton>
