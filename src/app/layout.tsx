@@ -1,7 +1,6 @@
 import "@/app/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { env, isCN } from "@/lib/env";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
@@ -66,7 +65,6 @@ export default async function MainLayout({ children }: { children: React.ReactNo
         </ThemeProvider>
         <Toaster richColors position="bottom-right" />
       </body>
-      <GoogleAnalytics gaId="G-TLYE3CBLPW" />
     </html>
   );
 }
