@@ -7,12 +7,18 @@ let CLI: unknown = null;
  * Initializes the jq CLI.
  */
 export async function init() {
+  // 获取basePath
+  const basePath = typeof window !== "undefined" ? 
+    // @ts-ignore
+    (window.__NEXT_DATA__?.basePath || "") : 
+    "";
+
   CLI = await new Aioli(
     [
       {
         tool: "jq",
         version: "1.7",
-        urlPrefix: `${window.location.origin}/jq/1.7`,
+        urlPrefix: `${basePath}/jq/1.7`,
       },
     ],
     {

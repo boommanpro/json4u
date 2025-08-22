@@ -36,6 +36,27 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/**
+ * 获取基于basePath的资源路径
+ * @param path - 资源路径
+ * @returns 添加了basePath前缀的路径
+ */
+export function getAssetPath(path: string): string {
+  // 确保路径以/开头，但不以/结尾
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  
+  // 在客户端获取basePath
+  if (typeof window !== "undefined") {
+    // Next.js会在window上设置__NEXT_DATA__对象，其中包含basePath
+    // @ts-ignore
+    const basePath = window.__NEXT_DATA__?.nextExport ? "" : (window.__NEXT_DATA__?.assetPrefix || "");
+    return basePath + normalizedPath;
+  }
+  
+  // 服务端渲染时返回相对路径
+  return normalizedPath;
+}
+
 export function isApproximatelyEqual(a: number, b: number, tolerance: number) {
   return Math.abs(a - b) < tolerance;
 }

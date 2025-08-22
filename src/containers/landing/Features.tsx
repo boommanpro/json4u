@@ -1,6 +1,6 @@
 import Section from "@/components/Section";
 import Typography from "@/components/ui/typography";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -10,27 +10,27 @@ export default function Features() {
     {
       headline: t("Visualize"),
       description: t("Visualize_description"),
-      img: "/example/graph.webp",
+      img: "example/graph.webp",
     },
     {
       headline: t("Compare"),
       description: t("Compare_description"),
-      img: "/example/compare.webp",
+      img: "example/compare.webp",
     },
     {
       headline: t("Command"),
       description: t("Command_description"),
-      img: "/example/import-csv.webp",
+      img: "example/import-csv.webp",
     },
     {
       headline: t("Format"),
       description: t("Format_description"),
-      img: "/example/nest-parse.webp",
+      img: "example/nest-parse.webp",
     },
     {
       headline: t("Validate"),
       description: t("Validate_description"),
-      img: "/example/validate.webp",
+      img: "example/validate.webp",
     },
   ];
 
@@ -45,7 +45,7 @@ export default function Features() {
             <div className={cn("order-2", i % 2 ? "md:order-1" : "md:order-2")}>
               <img
                 className="w-full max-w-2xl rounded-xl shadow-xl ring-1 ring-gray-400/10"
-                src={img}
+                src={getAssetPath(img)}
                 alt={headline}
                 loading="lazy"
                 decoding="async"
