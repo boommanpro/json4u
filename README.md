@@ -1,7 +1,3 @@
-<p align="center">
-<img src="./src/app/icon.svg" height="150">
-</p>
-
 <h1 align="center">
 JSON For You
 </h1>
