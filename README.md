@@ -5,10 +5,6 @@ JSON For You
 The best JSON visualization and processing tool.
 <br />
 
-<p align="center">
-<a href="https://json4u.com/editor"><b>Try it now</b></a> · <a href="https://json4u.cn">中文网址</a>
-</p>
-
 ## 项目介绍
 
 本项目 fork [json4u](https://github.com/loggerhead/json4u)，在原项目基础上做了如下改动，作为自用
