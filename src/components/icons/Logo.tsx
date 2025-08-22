@@ -8,7 +8,7 @@ interface LogoProps {
 export default function Logo({ size, className }: LogoProps) {
   return (
     <img
-      src={getAssetPath("icon.svg")}
+      src={getAssetPath("/icon.svg")}
       width={size}
       height={size}
       className={cn("max-w-full max-h-full", className)}

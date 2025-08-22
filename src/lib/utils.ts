@@ -44,17 +44,15 @@ export function cn(...inputs: ClassValue[]) {
 export function getAssetPath(path: string): string {
   // 确保路径以/开头，但不以/结尾
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  
-  // 在客户端获取basePath
-  if (typeof window !== "undefined") {
-    // Next.js会在window上设置__NEXT_DATA__对象，其中包含basePath
-    // @ts-ignore
-    const basePath = window.__NEXT_DATA__?.nextExport ? "" : (window.__NEXT_DATA__?.assetPrefix || "");
-    return basePath + normalizedPath;
+  // 如果路径以/json4u或/json4u/开头，则不拼接前缀
+  if (normalizedPath.startsWith("/json4u") || normalizedPath.startsWith("/json4u/")) {
+    return normalizedPath;
   }
-  
-  // 服务端渲染时返回相对路径
-  return normalizedPath;
+  // 在客户端获取basePath
+  // Next.js会在window上设置__NEXT_DATA__对象，其中包含basePath
+  // @ts-ignore
+  const basePath = "/json4u";
+  return basePath + normalizedPath;
 }
 
 export function isApproximatelyEqual(a: number, b: number, tolerance: number) {
@@ -150,7 +148,7 @@ export function initLogger() {
   // @ts-ignore
   console.rawInfo = console.info.bind(console);
   // @ts-ignore
-  console.l = function (...args: any[]) {
+  console.l = function(...args: any[]) {
     // @ts-ignore
     log(this.rawInfo, ...args);
   };

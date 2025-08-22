@@ -73,7 +73,7 @@ function useInitial() {
 
   // 从URL参数读取data并填充到编辑器
   useEffect(() => {
-    const data = searchParams.get("data");
+    const data = searchParams?.get("data");
     if (data && mainEditor) {
       mainEditor.parseAndSet(data);
       // 清除URL参数

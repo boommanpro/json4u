@@ -3,6 +3,7 @@ import LinkButton from "@/components/LinkButton";
 import Section from "@/components/Section";
 import Typography from "@/components/ui/typography";
 import { isCN } from "@/lib/env";
+import { getAssetPath } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 export default function Title() {
@@ -33,7 +34,7 @@ export default function Title() {
           height="720"
           className="mt-8 rounded-md shadow-2xl border sm:mt-12 block"
           src={isCN ? "https://o.json4u.cn/json4u.mp4" : "https://o.json4u.com/json4u.mp4"}
-          poster="/example/json4u.webp"
+          poster={getAssetPath("example/json4u.webp")}
           autoPlay
           loop
           muted
