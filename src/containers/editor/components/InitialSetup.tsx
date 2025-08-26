@@ -75,7 +75,16 @@ function useInitial() {
   useEffect(() => {
     const data = searchParams?.get("data");
     if (data && mainEditor) {
-      mainEditor.parseAndSet(data);
+      if (data === "copyFromClipboard") {
+        // 从剪贴板读取数据
+        navigator.clipboard.readText().then(text => {
+          mainEditor.parseAndSet(text);
+        }).catch(err => {
+          console.error("Failed to read from clipboard:", err);
+        });
+      } else {
+        mainEditor.parseAndSet(data);
+      }
       // 清除URL参数
       if (typeof window !== "undefined") {
         const url = new URL(window.location.href);
