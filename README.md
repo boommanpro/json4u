@@ -1,17 +1,9 @@
-<p align="center">
-<img src="./src/app/icon.svg" height="150">
-</p>
-
 <h1 align="center">
 JSON For You
 </h1>
 <p align="center">
 The best JSON visualization and processing tool.
 <br />
-
-<p align="center">
-<a href="https://json4u.com/editor"><b>Try it now</b></a> · <a href="https://json4u.cn">中文网址</a>
-</p>
 
 ## 项目介绍
 
