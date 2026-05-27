@@ -20,9 +20,9 @@ jobs:
 
       # 新增 pnpm 安装步骤
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 9.12.0  # 指定 pnpm 版本，建议与本地一致
+          version: 9
 
       - name: Install dependencies And Build
         run: pnpm install --frozen-lockfile
